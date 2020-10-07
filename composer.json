@@ -1,0 +1,22 @@
+{
+    "name": "attitude/prop-types-php",
+    "description": "A lean implementation of React Prop Types library in PHP",
+    "type": "library",
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "php": "^7.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Adamko",
+            "email": "martinadamko.sk@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": ["src/bootstrap.php"],
+        "psr-4": {"PropTypes\\": "src/"}
+    }
+}
