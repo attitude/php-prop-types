@@ -26,6 +26,9 @@ abstract class AbstractType implements TypeInterface {
         if (preg_match(SWITCH_PROPERTY_REGEX, $property)) {
           throw new \Exception("`${property}` switch is not implemented", 500);
         }
+
+        // if (property_exists($this, $property)
+        throw new \Exception("Undefined property: `${property}`", 500);
       break;
     }
   }

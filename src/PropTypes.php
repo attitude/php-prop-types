@@ -31,6 +31,8 @@ class PropTypes {
     } else {
       throw new \Exception("Expecting one of [Type, Type factory closure, validation closure factory closure].", 500);
     }
+
+    return static::$types[$name];
   }
 
   public static function __callStatic($name = '', array $arguments = []): TypeInterface {

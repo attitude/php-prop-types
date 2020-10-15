@@ -4,12 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ee9da65e1e584586655a7e50656339f",
+    "content-hash": "c647c4b705439d1f4def88f0ff70907f",
     "packages": [],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "attitude/index-php",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/attitude/index-php.git",
+                "reference": "fbd281b278a73f3c3eedc746fdb702dc81b96b7a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/attitude/index-php/zipball/fbd281b278a73f3c3eedc746fdb702dc81b96b7a",
+                "reference": "fbd281b278a73f3c3eedc746fdb702dc81b96b7a",
+                "shasum": ""
+            },
+            "type": "devtool",
+            "autoload": {
+                "files": [
+                    "index.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Adamko",
+                    "email": "martinadamko.sk@gmail.com"
+                }
+            ],
+            "description": "Walks tree and generates index.php [devtool]",
+            "support": {
+                "source": "https://github.com/attitude/index-php/tree/main",
+                "issues": "https://github.com/attitude/index-php/issues"
+            },
+            "time": "2020-10-13T13:19:13+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "attitude/index-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

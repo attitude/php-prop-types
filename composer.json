@@ -6,7 +6,8 @@
         "php": "^7.0"
     },
     "require-dev": {
-        "php": "^7.0"
+        "php": "^7.0",
+        "attitude/index-php": "dev-main"
     },
     "license": "MIT",
     "authors": [
@@ -15,8 +16,20 @@
             "email": "martinadamko.sk@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/attitude/index-php"
+        }
+    ],
+    "scripts": {
+        "reindex": "vendor/attitude/index-php/run.sh -path \"src/Functions\" -backup off"
+    },
     "autoload": {
-        "files": ["src/bootstrap.php"],
+        "files": [
+            "src/bootstrap.php",
+            "src/Functions/index.php"
+        ],
         "psr-4": {"PropTypes\\": "src/"}
     }
 }
