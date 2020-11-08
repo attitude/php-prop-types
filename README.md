@@ -1,5 +1,7 @@
 # React PropTypes implemented in PHP
 
+> <small style="font-weight:bold">DEPRECATED NODICE:</small> This project is predecessor of <a href="https://github.com/attitude/duck-types-php" style="color: inherit;text-decoration:underline;font-weight:bold">Duck Types for PHP</a> — your asserts turn into readable and short one-liners with Flow-flavoured syntax annotations.
+
 A lean implementation inspired by the [React Prop Types](https://reactjs.org/docs/typechecking-with-proptypes.html) library and [Flow](https://flow.org) done for PHP. All the types are overridable (displays warnings you can turn off) and you can even define/register your own types for better reuse (inspired by the Flow types).
 
 All registered types are accessible as static methods of the `PropTypes` class.
