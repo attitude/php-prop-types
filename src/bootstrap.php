@@ -90,6 +90,12 @@ PropTypes::register('instanceOf', function ($class) {
   };
 });
 
+PropTypes::register('literal', function ($literal) {
+  return function($value) use ($literal) {
+    invariant($value === $literal, "expecting literal `{$literal}`, but ".json_encode($value)." was given");
+  };
+});
+
 PropTypes::register('oneOf', function (array $enumValues = []) {
   return function($value) use ($enumValues) {
     static $joinedValues;

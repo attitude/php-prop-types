@@ -93,6 +93,13 @@ describe('PropTypes', function() {
     })->toThrow('expecting instance of `StdClass` but object was given instead for type `instanceOf`');
   });
 
+  it('should validate literal', function() {
+    expect(PropTypes::literal('literal')->assert('literal'))->toBeNull();
+    expect(function() {
+      PropTypes::literal('literal')->assert('not literal');
+    })->toThrow('expecting literal `literal`, but "not literal" was given');
+  });
+
   it('should validate oneOf', function() {
     expect(PropTypes::oneOf(['1', 2, 'three'])->assert(2))->toBeNull();
     expect(function() {
