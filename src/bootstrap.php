@@ -94,9 +94,9 @@ PropTypes::register('oneOf', function (array $enumValues = []) {
   return function($value) use ($enumValues) {
     static $joinedValues;
 
-    if (!$joinedValues) { $joinedValues = json_encode($enumValues); }
+    if (!$joinedValues) { $joinedValues = implode(', ', array_map('json_encode', $enumValues)); }
 
-    invariant(in_array($value, $enumValues, true), "is invalid, expecting one of {$joinedValues}, ".json_encode($value)." given");
+    invariant(in_array($value, $enumValues, true), "expecting one of {$joinedValues}, but ".json_encode($value)." was given");
   };
 });
 
@@ -121,7 +121,7 @@ PropTypes::register('oneOfType', function (array $types = []) {
         },
         false
       ),
-      "is invalid, expecting {$joinedValues}, but ".gettype($value)." was given"
+      "expecting {$joinedValues}, but ".gettype($value)." was given"
     );
   };
 });

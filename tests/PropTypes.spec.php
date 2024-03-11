@@ -97,7 +97,7 @@ describe('PropTypes', function() {
     expect(PropTypes::oneOf(['1', 2, 'three'])->assert(2))->toBeNull();
     expect(function() {
       PropTypes::oneOf(['1', 2, 'three'])->assert('2');
-    })->toThrow('expecting one of ["1",2,"three"], "2" given');
+    })->toThrow('expecting one of "1", 2, "three", but "2" was given instead for type `oneOf`');
   });
 
   it('should validate oneOfType', function() {
