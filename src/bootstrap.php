@@ -36,6 +36,12 @@ PropTypes::register('array', function () {
   };
 });
 
+PropTypes::register('null', function () {
+  return function($value) {
+    invariantPrimitive(is_null($value), 'null', $value);
+  };
+});
+
 PropTypes::register(['boolean', 'bool'], function () {
   return function($value) {
     invariantPrimitive(is_bool($value), 'boolean', $value);
