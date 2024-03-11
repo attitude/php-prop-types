@@ -19,7 +19,6 @@ class ExactType extends AbstractTypeWrapper {
 
   private function __fromType($type) {
     $this->assertAbstractType($type);
-    $this->assertAbstractTypeWrapper($type);
 
     $this->type = $type;
     $shape = method_exists($type, 'shape') ? $type->shape() : $type->unpack();
@@ -41,8 +40,6 @@ class ExactType extends AbstractTypeWrapper {
   }
 
   private function assertAbstractType(AbstractType $type) {}
-
-  private function assertAbstractTypeWrapper(AbstractTypeWrapper $type) {}
 
   public function assert($value): void {
     $valueKeys = array_keys((array) $value);

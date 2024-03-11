@@ -7,7 +7,9 @@
     },
     "require-dev": {
         "php": ">=7.0 <9.0",
-        "attitude/index-php": "dev-main"
+        "attitude/index-php": "dev-main",
+        "pestphp/pest": "^2.25",
+        "pestphp/pest-plugin-watch": "^2.0"
     },
     "license": "MIT",
     "authors": [
@@ -31,5 +33,10 @@
             "src/Functions/index.php"
         ],
         "psr-4": {"PropTypes\\": "src/"}
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
 }

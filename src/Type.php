@@ -40,7 +40,7 @@ class Type extends AbstractType {
         $validation = $this->validation;
         $validation($value);
       } catch (\Throwable $th) {
-        throw new \Exception($th->getMessage()." for `{$this->name}`", $th->getCode());
+        throw new \Exception($th->getMessage()." instead for type `{$this->name}`", $th->getCode());
       }
     } else {
       $this->assertShape($value);
@@ -78,7 +78,7 @@ class Type extends AbstractType {
           if ($message[0] === '`') {
             throw new \Exception("`{$name}.".substr($message, 1), 400);
           } else {
-            throw new \Exception("`{$name}` {$message}", 400);
+            throw new \Exception("`{$name}`: {$message}", 400);
           }
         }
       }

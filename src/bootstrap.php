@@ -20,7 +20,7 @@ if (!defined('PROP_TYPES_DEBUG')) {
 
 function invariantPrimitive(bool $test, $typeExpected = '', $value) {
   if (!$test) {
-    throw new \Exception("is invalid, expecting {$typeExpected} but ".gettype($value)." was given", 500);
+    throw new \Exception("expecting {$typeExpected} but ".gettype($value)." was given", 500);
   }
 }
 
@@ -36,7 +36,7 @@ PropTypes::register('array', function () {
   };
 });
 
-PropTypes::register('bool', function () {
+PropTypes::register(['boolean', 'bool'], function () {
   return function($value) {
     invariantPrimitive(is_bool($value), 'boolean', $value);
   };
@@ -98,7 +98,7 @@ PropTypes::register('oneOfType', function (array $types = []) {
   return function($value) use ($types) {
     static $joinedValues;
 
-    if (!$joinedValues) { $joinedValues = '['.implode(', ', $types).']'; }
+    if (!$joinedValues) { $joinedValues = 'one of '.implode(', ', $types).''; }
 
     invariant(
       array_reduce(
@@ -115,7 +115,7 @@ PropTypes::register('oneOfType', function (array $types = []) {
         },
         false
       ),
-      "is invalid, expecting {$joinedValues}, ".gettype($value)." given"
+      "is invalid, expecting {$joinedValues}, but ".gettype($value)." was given"
     );
   };
 });
@@ -135,7 +135,7 @@ PropTypes::register('arrayOf', function (TypeInterface $type) {
 });
 
 PropTypes::register('objectOf', function (TypeInterface $type) {
-  function($value) use ($type) {
+  return function($value) use ($type) {
     invariantPrimitive(is_object($value), 'object', $value);
 
     $value = (array) $value;
