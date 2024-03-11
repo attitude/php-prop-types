@@ -42,9 +42,21 @@ PropTypes::register('bool', function () {
   };
 });
 
-PropTypes::register('func', function () {
+PropTypes::register(['function', 'func'], function () {
   return function($value) {
     invariantPrimitive(is_callable($value), 'callable', $value);
+  };
+});
+
+PropTypes::register('int', function () {
+  return function($value) {
+    invariantPrimitive(is_int($value), 'int', $value);
+  };
+});
+
+PropTypes::register('float', function () {
+  return function($value) {
+    invariantPrimitive(is_float($value), 'float', $value);
   };
 });
 

@@ -5,34 +5,43 @@ namespace PropTypes;
 class PropTypes {
   private static $types = [];
 
-  public static function register(string $name = '', $__2) {
-    $name = trim($name);
+  // TODO: Use construct union type (PHP 8.0): string|array
+  public static function register($name = '', $__2) {
+    if (is_string($name)) {
+      $name = trim($name);
 
-    if (!$name) {
-      throw new \Exception("Type name must be a string with length more than 0", 500);
-    }
-
-    if (PROP_TYPES_WARNINGS_ENABLED && isset(static::$types[$name])) {
-      trigger_error("Overriding already defined `{$name}` type", E_USER_NOTICE);
-    }
-
-    if ($__2 instanceof TypeInterface) {
-      if ($__2->isNullable()) {
-        throw new \Exception("Registering a NullableType is prohibited", 500);
+      if (!$name) {
+        throw new \Exception("Type name must be a string with length more than 0", 500);
       }
 
-      static::$types[$name] = new TypeAlias($name, $__2);
-    } elseif ($__2 instanceof \Closure) {
-      if ((new \ReflectionFunction($__2))->getNumberOfParameters() === 0) {
-        static::$types[$name] = new Type($name, $__2());
+      if (PROP_TYPES_WARNINGS_ENABLED && isset(static::$types[$name])) {
+        trigger_error("Overriding already defined `{$name}` type", E_USER_NOTICE);
+      }
+
+      if ($__2 instanceof TypeInterface) {
+        if ($__2->isNullable()) {
+          throw new \Exception("Registering a NullableType is prohibited", 500);
+        }
+
+        static::$types[$name] = new TypeAlias($name, $__2);
+      } elseif ($__2 instanceof \Closure) {
+        if ((new \ReflectionFunction($__2))->getNumberOfParameters() === 0) {
+          static::$types[$name] = new Type($name, $__2());
+        } else {
+          static::$types[$name] = $__2;
+        }
       } else {
-        static::$types[$name] = $__2;
+        throw new \Exception("Expecting one of [Type, Type factory closure, validation closure factory closure].", 500);
+      }
+
+      return static::$types[$name];
+    } if (is_array($name)) {
+      foreach ($name as $member) {
+        static::register($member, $__2);
       }
     } else {
-      throw new \Exception("Expecting one of [Type, Type factory closure, validation closure factory closure].", 500);
+      throw new \Exception("Expecting string or array", 500);
     }
-
-    return static::$types[$name];
   }
 
   public static function __callStatic($name = '', array $arguments = []): TypeInterface {
