@@ -10,13 +10,17 @@ if (!defined('PROP_TYPES_WARNINGS_ENABLED')) {
   define('PROP_TYPES_WARNINGS_ENABLED', true);
 }
 
+if (!defined('DEFAULT_PROPS_WARNINGS_ENABLED')) {
+  define('DEFAULT_PROPS_WARNINGS_ENABLED', true);
+}
+
 if (!defined('PROP_TYPES_DEBUG')) {
   define('PROP_TYPES_DEBUG', false);
 }
 
 function invariantPrimitive(bool $test, $typeExpected = '', $value) {
   if (!$test) {
-    throw new \Exception("is invalid, expecting ${typeExpected} but ".gettype($value)." was given", 500);
+    throw new \Exception("is invalid, expecting {$typeExpected} but ".gettype($value)." was given", 500);
   }
 }
 
@@ -64,7 +68,7 @@ PropTypes::register('string', function () {
 
 PropTypes::register('instanceOf', function ($class) {
   return function($value) use ($class) {
-    invariantPrimitive(is_a($value, $class), "instance of `${class}`", $value);
+    invariantPrimitive(is_a($value, $class), "instance of `{$class}`", $value);
   };
 });
 
@@ -74,7 +78,7 @@ PropTypes::register('oneOf', function (array $enumValues = []) {
 
     if (!$joinedValues) { $joinedValues = json_encode($enumValues); }
 
-    invariant(in_array($value, $enumValues, true), "is invalid, expecting one of ${joinedValues}, ".json_encode($value)." given");
+    invariant(in_array($value, $enumValues, true), "is invalid, expecting one of {$joinedValues}, ".json_encode($value)." given");
   };
 });
 
@@ -99,7 +103,7 @@ PropTypes::register('oneOfType', function (array $types = []) {
         },
         false
       ),
-      "is invalid, expecting ${joinedValues}, ".gettype($value)." given"
+      "is invalid, expecting {$joinedValues}, ".gettype($value)." given"
     );
   };
 });

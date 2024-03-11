@@ -12,8 +12,8 @@ function assertDefaultPropsFromProps (array $defaultProps, TypeInterface $type) 
     return !($type instanceof RequiredType);
   });
 
-  $defaltPropsType = new ExactType("defaultProps(${type})", $shape);
-  $defaltPropsType->assert($defaultProps);
+  $defaultPropsType = new ExactType("defaultProps({$type})", $shape);
+  $defaultPropsType->assert($defaultProps);
 
   return;
 }

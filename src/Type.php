@@ -2,9 +2,8 @@
 
 namespace PropTypes;
 
-define('SWITCH_PROPERTY_REGEX', '/^is[A-Z]\w+/');
-
 class Type extends AbstractType {
+  protected $name = '';
   protected $isShape = false;
   protected $validation = null;
 
@@ -35,7 +34,7 @@ class Type extends AbstractType {
     return $this->name;
   }
 
-  public function assert($value):void {
+  public function assert($value): void {
     if ($this->validation instanceof \Closure) {
       try {
         $validation = $this->validation;
@@ -65,7 +64,7 @@ class Type extends AbstractType {
 
     foreach ($this->validation as $name => $validation) {
       if ($validation instanceof RequiredType && !array_key_exists($name, $props)) {
-        throw new \Exception("${name} is required", 400);
+        throw new \Exception("{$name} is required", 400);
       }
 
       if (array_key_exists($name, $props)) {
@@ -77,9 +76,9 @@ class Type extends AbstractType {
           $message = lcfirst($th->getMessage());
 
           if ($message[0] === '`') {
-            throw new \Exception("`${name}.".substr($message, 1), 400);
+            throw new \Exception("`{$name}.".substr($message, 1), 400);
           } else {
-            throw new \Exception("`${name}` ${message}", 400);
+            throw new \Exception("`{$name}` {$message}", 400);
           }
         }
       }

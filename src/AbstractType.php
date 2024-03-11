@@ -3,33 +3,31 @@
 namespace PropTypes;
 
 abstract class AbstractType implements TypeInterface {
+  const SWITCH_PROPERTY_REGEX = '/^is[A-Z]\w+/';
+
   public function __get($property) {
     switch ($property) {
       case 'null':
       case 'nullable':
       case 'isNullable':
         return new NullableType($this);
-      break;
 
-      case 'requre':
+      case 'require':
       case 'required':
       case 'isRequired':
         return new RequiredType($this);
-      break;
 
       case 'exact':
       case 'isExact':
         return new ExactType($this);
-      break;
 
       default:
-        if (preg_match(SWITCH_PROPERTY_REGEX, $property)) {
-          throw new \Exception("`${property}` switch is not implemented", 500);
+        if (preg_match(self::SWITCH_PROPERTY_REGEX, $property)) {
+          throw new \Exception("`{$property}` switch is not implemented", 500);
         }
 
         // if (property_exists($this, $property)
-        throw new \Exception("Undefined property: `${property}`", 500);
-      break;
+        throw new \Exception("Undefined property: `{$property}`", 500);
     }
   }
 

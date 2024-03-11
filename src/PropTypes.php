@@ -9,16 +9,16 @@ class PropTypes {
     $name = trim($name);
 
     if (!$name) {
-      throw new \Exception("Type name must be a string with lenght more than 0", 500);
+      throw new \Exception("Type name must be a string with length more than 0", 500);
     }
 
     if (PROP_TYPES_WARNINGS_ENABLED && isset(static::$types[$name])) {
-      trigger_error("Overriding already defined `${name}` type", E_USER_NOTICE);
+      trigger_error("Overriding already defined `{$name}` type", E_USER_NOTICE);
     }
 
     if ($__2 instanceof TypeInterface) {
       if ($__2->isNullable()) {
-        throw new \Exception("Registerring a NullableType is prohibited", 500);
+        throw new \Exception("Registering a NullableType is prohibited", 500);
       }
 
       static::$types[$name] = new TypeAlias($name, $__2);
@@ -37,12 +37,12 @@ class PropTypes {
 
   public static function __callStatic($name = '', array $arguments = []): TypeInterface {
     if (!isset(static::$types[$name])) {
-      throw new \Exception("`${name}` PropType is not registered", 404);
+      throw new \Exception("`{$name}` PropType is not registered", 404);
     }
 
     if (static::$types[$name] instanceof TypeInterface) {
       if (count($arguments) > 0) {
-        throw new \Exception("`${name}` type creation does not expect any arguments", 500);
+        throw new \Exception("`{$name}` type creation does not expect any arguments", 500);
       }
 
       return static::$types[$name];

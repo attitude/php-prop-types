@@ -1,13 +1,13 @@
 <?php
 
 /**
- * Merges Props with default props recursivelly
+ * Merges Props with default props recursively
  *
- * - every key tthat is missing in Props will be merged
- * - if property on the Props is a array then the defaults are merged recursivelly
+ * - every key that is missing in Props will be merged
+ * - if property on the Props is a array then the defaults are merged recursively
  * - every empty `array` turns to null
  *
- * @param array $props Passed by refference
+ * @param array $props Passed by reference
  * @param array $defaultProps
  * @return void
  */

@@ -18,9 +18,11 @@ class NullableType extends AbstractTypeWrapper {
   }
 
   public function assert ($value): void {
-    if (empty($value) && $value !== 0) { return; }
-
-    $this->type->assert($value);
+    if (empty($value) && $value !== 0) {
+      return;
+    } else {
+      $this->type->assert($value);
+    }
   }
 
   public function isNullable(): bool {
