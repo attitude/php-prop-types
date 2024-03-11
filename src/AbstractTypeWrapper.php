@@ -11,6 +11,10 @@ abstract class AbstractTypeWrapper extends AbstractType {
     $this->type->assert($value);
   }
 
+  public function parse ($value): mixed {
+    return $this->type->parse($value);
+  }
+
   public function isExact(): bool {
     return $this->type->isExact();
   }

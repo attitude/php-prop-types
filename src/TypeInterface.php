@@ -5,6 +5,7 @@ namespace PropTypes;
 interface TypeInterface {
   public function __toString(): string;
   public function assert ($value): void;
+  public function parse ($value): mixed;
   public function isExact(): bool;
   public function isNullable(): bool;
   public function isRequired(): bool;

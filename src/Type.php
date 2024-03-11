@@ -47,6 +47,11 @@ class Type extends AbstractType {
     }
   }
 
+  public function parse(mixed $value): mixed {
+    $this->assert($value);
+    return $value;
+  }
+
   private function assertShape($props): void {
     if (PROP_TYPES_STRICT_OBJECTS_SHAPE && !is_object($props)) {
       if (is_array($props)) {

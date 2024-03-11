@@ -254,5 +254,31 @@ describe('PropTypes', function() {
         'extraKey' => '123',
       ]);
     })->toThrow('Unexpected extra keys [extraKey] were given for exact |exact| shape');
+
+    expect($shape->parse([
+      'names' => ['Martin'],
+      'bool' => true,
+      'structure' => [
+        'deep' => ['Adamko'],
+        'enum' => 2,
+        'oneOf' => '',
+        'arrayOf' => ['2'],
+        'objectOf' => (object)['2'],
+        'requiredAny' => '',
+        'instanceOf' => (object) [],
+      ],
+    ]))->toEqual([
+      'names' => ['Martin'],
+      'bool' => true,
+      'structure' => [
+        'deep' => ['Adamko'],
+        'enum' => 2,
+        'oneOf' => '',
+        'arrayOf' => ['2'],
+        'objectOf' => (object)['2'],
+        'requiredAny' => '',
+        'instanceOf' => (object) [],
+      ],
+    ]);
   });
 });
