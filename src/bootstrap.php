@@ -18,7 +18,7 @@ if (!defined('PROP_TYPES_DEBUG')) {
   define('PROP_TYPES_DEBUG', false);
 }
 
-function invariantPrimitive(bool $test, $typeExpected = '', $value) {
+function invariantPrimitive(bool $test, $typeExpected, $value) {
   if (!$test) {
     throw new \Exception("expecting {$typeExpected} but ".gettype($value)." was given", 500);
   }

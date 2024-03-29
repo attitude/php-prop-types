@@ -6,7 +6,7 @@ class PropTypes {
   private static $types = [];
 
   // TODO: Use construct union type (PHP 8.0): string|array
-  public static function register($name = '', $__2) {
+  public static function register($name, $__2) {
     if (is_string($name)) {
       $name = trim($name);
 
